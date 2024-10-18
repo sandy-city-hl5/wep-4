@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة المستخدمين</title>
+    <title>تسجيل الدخول</title>
     <style>
         body {
             background-color: #121212;
@@ -11,52 +11,60 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            padding: 20px;
         }
-        .title {
-            font-size: 2em;
+        h1 {
             margin-bottom: 20px;
         }
-        #bannedUsers {
-            margin-top: 20px;
-            width: 100%;
+        input {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
         }
-        .image-preview {
-            max-width: 100px;
-            max-height: 100px;
-            margin-left: 10px;
+        button {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #333333;
         }
     </style>
 </head>
 <body>
-    <div class="title">المستخدمون المحظورون</div>
-    <div id="bannedUsers"></div>
+    <h1>تسجيل الدخول</h1>
+    <div>
+        <button onclick="location.href='user.html'">تسجيل دخول كمستخدم</button>
+        <button onclick="showAdminLogin()">تسجيل دخول كمشرف</button>
+    </div>
+
+    <div id="adminLoginForm" style="display:none;">
+        <input type="password" id="adminPassword" placeholder="كلمة مرور المشرف" />
+        <button onclick="checkAdminPassword()">دخول</button>
+    </div>
 
     <script>
-        const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
-
-        function updateBannedUsersList() {
-            const bannedUsersDiv = document.getElementById('bannedUsers');
-            bannedUsersDiv.innerHTML = '';
-            bannedUsers.forEach(user => {
-                bannedUsersDiv.innerHTML += `
-                    <p>
-                        اسم المستخدم: ${user.name} | 
-                        معرف المستخدم: ${user.userId} | 
-                        سبب الحظر: ${user.reason} 
-                        ${user.image ? `<img src="${user.image}" class="image-preview" alt="صورة المستخدم" />` : ''}
-                    </p>`;
-            });
+        function showAdminLogin() {
+            document.getElementById('adminLoginForm').style.display = 'block';
         }
 
-        // تحديث القائمة عند تحميل الصفحة
-        updateBannedUsersList();
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === 'hl5 sandy') {
+                location.href = 'admin.html'; // تأكد أن admin.html موجود في نفس المجلد
+            } else {
+                alert('كلمة المرور خاطئة!');
+            }
+        }
     </script>
 </body>
 </html>
-
-
