@@ -1,108 +1,62 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-    <title>sandy city</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المستخدمين</title>
     <style>
-        h1 {
-            text-align: center;
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        #bannedUsers {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .image-preview {
+            max-width: 100px;
+            max-height: 100px;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>sandy city host!</h1>
-    
+    <div class="title">المستخدمون المحظورون</div>
+    <div id="bannedUsers"></div>
+
+    <script>
+        const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+
+        function updateBannedUsersList() {
+            const bannedUsersDiv = document.getElementById('bannedUsers');
+            bannedUsersDiv.innerHTML = '';
+            bannedUsers.forEach(user => {
+                bannedUsersDiv.innerHTML += `
+                    <p>
+                        اسم المستخدم: ${user.name} | 
+                        معرف المستخدم: ${user.userId} | 
+                        سبب الحظر: ${user.reason} 
+                        ${user.image ? `<img src="${user.image}" class="image-preview" alt="صورة المستخدم" />` : ''}
+                    </p>`;
+            });
+        }
+
+        // تحديث القائمة عند تحميل الصفحة
+        updateBannedUsersList();
+    </script>
 </body>
 </html>
 
-<!DOCTYPE html>
-<html>
-<head>
-    
-  <!DOCTYPE html>
-  <html>
-  <head>
-   
-
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-        
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>sandy city</title>
-    <style>
-    ul {
-      list-style-type: none; /* لإخفاء النقاط أمام العناصر */
-      margin: 0;
-      padding: 0;
-      overflow: hidden; /* لإخفاء أي جزء يزيد عن العرض */
-      background-color: #333; /* لون رمادي داكن للخلفية */
-    }
-
-    li {
-      float: left; /* لترتيب العناصر أفقيًا */
-    }
-
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      background-color: #111;
-    }
-    </style>
-    </head>
-    <body>
-
-    <ul>
-      <li><a href="https://www.example.com/الصفحة الرئسية">الصفحة الرئسية</a></li>
-        <li><a href="https://sandy-city-hl5.github.io/wep-2/""> المتجر </a>
-      <li><a href="https://sandy-city-hl5.github.io/wep-3/">الاخبار </a></li>
-      <li><a href="https://discord.gg/hl/رابط السيرفر">رابط السيرفر</a></li>
-    </ul>
-
-    </body>
-    </html>
-
-
-      <!DOCTYPE html>
-      <html>
-      <head>
-          <title>sandy city</title>
-          <style>
-              p {
-                  font-size: 50px; /* جعلنا الخط أكبر */
-                  text-align: right;
-              }
-
-          </style>
-      </head>
-      <body>
-          <p>هلا بك في خادمنا المتواضع هنا يمكنك التسوق و رؤية الاخبار</p>
-      </body>
-         
-          
-          
-          
-          
-          <img src="https://cdn.discordapp.com/attachments/1275505795168997417/1294334646691299361/image0.jpg?ex=670aa293&is=67095113&hm=d94f6dd31a6c1505929e9c91318f3954e1a593925cbdd1959050f9b88eadcb54&" alt="وصف الصورة" style="width: 500px; height: auto;">
 
