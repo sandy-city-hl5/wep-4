@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المستخدمين</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        #bannedUsers {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .image-preview {
+            max-width: 100px;
+            max-height: 100px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">المستخدمون المحظورون</div>
+    <div id="bannedUsers"></div>
+
+    <script>
+        const bannedUsers = JSON.parse(localStorage.getItem('bannedUsers')) || [];
+
+        function updateBannedUsersList() {
+            const bannedUsersDiv = document.getElementById('bannedUsers');
+            bannedUsersDiv.innerHTML = '';
+            bannedUsers.forEach(user => {
+                bannedUsersDiv.innerHTML += `
+                    <p>
+                        اسم المستخدم: ${user.name} | 
+                        معرف المستخدم: ${user.userId} | 
+                        سبب الحظر: ${user.reason} 
+                        ${user.image ? `<img src="${user.image}" class="image-preview" alt="صورة المستخدم" />` : ''}
+                    </p>`;
+            });
+        }
+
+        // تحديث القائمة عند تحميل الصفحة
+        updateBannedUsersList();
+    </script>
+</body>
+</html>
